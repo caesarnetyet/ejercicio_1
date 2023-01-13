@@ -9,7 +9,3 @@ class Producto(Crud):
         self.nombre: str = nombre
         self.descripcion: str = descripcion
         self.precio: float = precio
-
-    def diccionario(self):
-        return {"codigo": self.codigo}
-
