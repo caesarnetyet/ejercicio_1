@@ -1,24 +1,27 @@
 from crud import Crud
-from producto import Producto
+from models.producto import Producto
+from models.clientes import Clientes
 
 
 class Ventas(Crud):
-    def __init__(self, cliente, detalle, producto, fecha, total):
+    def __init__(self, cliente: Clientes = None, detalle: str = None, producto: Producto = None, fecha: str = None):
         super().__init__()
-
-        self.cliente: str = cliente
+        if cliente is None:
+            self.cliente = Clientes()
+        else:
+            self.cliente: dict = vars(cliente)
         self.detalle: str = detalle
-        self.producto: Producto = producto
+        if producto is None:
+            self.producto = Producto()
+            self.total = 0.0
+        else:
+            self.producto: list = producto.todos()
+            self.total: float = self.get_total()
         self.fecha: str = fecha
-        self.total: float = total
 
-    def obtener_datos(self):
-        return {
 
-            "cliente": self.cliente,
-            "detalle": self.detalle,
-            "producto": self.producto,
-            "fecha": self.fecha,
-            "total": self.total,
-
-        }
+    def get_total(self):
+        total = 0.0
+        for producto in self.producto:
+            total += producto['precio']
+        return total

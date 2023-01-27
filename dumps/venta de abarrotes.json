@@ -1,0 +1,31 @@
+[
+  {
+    "lista": [],
+    "cliente": {
+      "lista": [],
+      "id": "0a70b9ae-fccb-434e-8377-80dc6ff06540",
+      "nombre": "Julio",
+      "rfc": "asd89fasd798",
+      "telefono": "8139895086"
+    },
+    "detalle": "venta de abarrotes",
+    "producto": [
+      {
+        "lista": [],
+        "id": "602c2311-c5f7-4da8-b858-2ff22a1e9073",
+        "nombre": "coca cola",
+        "descripcion": "refrescp",
+        "precio": 20.0
+      },
+      {
+        "lista": [],
+        "id": "abdbda98-5762-46fc-8817-782706da930b",
+        "nombre": "papitas",
+        "descripcion": "sabritas de sal",
+        "precio": 500.0
+      }
+    ],
+    "total": 520.0,
+    "fecha": null
+  }
+]
