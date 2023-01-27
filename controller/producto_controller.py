@@ -6,12 +6,14 @@ from parse import ParseJson
 class ProductoController:
     def __init__(self):
         self.productos = Producto()
+        self.file = 'dumps/productos.json'
 
     def cargar_productos(self):
-        product = ParseJson('dumps/productos.json').read()
-        print(product)
-        self.productos.agregar(ParseJson("productos.json").read())
+        product = ParseJson(self.file).read()
 
+        for producto in product:
+            self.productos.agregar(Producto(producto['id'], producto['nombre'],
+                                            producto['descripcion'], producto['precio']))
 
     def insertar_producto(self):
         seguir = True
@@ -22,6 +24,7 @@ class ProductoController:
             producto = Producto(uuid.uuid4().__str__(), nombre, descripcion, precio)
             self.productos.agregar(producto)
             seguir = input("Deseas seguir agregando productos? (s/n)") == 's'
+        ParseJson(self.file).dump(self.productos)
 
     def modificar_producto(self, id_: str):
 
@@ -40,5 +43,8 @@ class ProductoController:
                 return
         print("No se encontro el producto")
 
-    def eliminar_producto(self, producto: Producto):
-        self.productos.borrar(producto)
+    def eliminar_producto(self, producto_id: str):
+        for producto in self.productos.lista:
+            if producto.id == producto_id:
+                self.productos.borrar(producto)
+                ParseJson(self.file).dump(self.productos)

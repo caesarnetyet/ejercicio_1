@@ -2,12 +2,14 @@ from models.ventas import Ventas
 from models.clientes import Clientes
 from pprint import pprint
 from models.producto import Producto
+from parse import ParseJson
 
 
 class VentaController:
 
     def __init__(self):
         self.ventas = Ventas()
+        self.file = 'dumps/ventas.json'
 
     def insertar_venta(self, clientes: Clientes, productos: Producto):
         if clientes.size() == 0:
@@ -23,7 +25,11 @@ class VentaController:
                 descripcion = input("Ingresa la descripcion de la venta")
                 venta = Ventas(cliente, descripcion, productos)
                 self.ventas.agregar(venta)
+                ParseJson(self.file).dump(self.ventas)
                 return
         print("No se encontro el cliente")
 
-
+    def cargar_ventas(self):
+        ventas = ParseJson(self.file).read()
+        for venta in ventas:
+            self.ventas.agregar(Ventas(venta['cliente'], venta['descripcion'], venta['productos']))

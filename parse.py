@@ -10,9 +10,9 @@ class ParseJson:
     def dump(self, modelo: Crud | dict):
         directory: str
         if self.file is not None:
-            directory = 'dumps/'+self.file+'.json'
+            directory = self.file
         else:
-            directory = 'dumps/' + modelo.doc_name()+'.json'
+            directory = modelo.doc_name()
 
         with open(directory, 'w') as file:
             if modelo is dict:
@@ -25,11 +25,11 @@ class ParseJson:
                 json.dump(vars(modelo), file)
 
     def read(self):
-        try:
-            with open(self.file, 'r') as file:
+
+        with open(self.file, 'r') as file:
+            try:
                 dictionary_file = json.load(file)
-                print(dictionary_file)
                 return dictionary_file
 
-        except FileNotFoundError:
-            return []
+            except FileNotFoundError:
+                return []

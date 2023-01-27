@@ -7,6 +7,9 @@ from controller.producto_controller import ProductoController
 from models.clientes import Clientes
 from controller.persona_controller import PersonaController
 from parse import ParseJson
+from pprint import pprint
+
+from views.producto_view import vista_producto
 
 productos = Producto()
 productos_2 = Producto()
@@ -35,7 +38,8 @@ ParseJson("Ventadas").dump(ventas)
 ParseJson("productos").dump(productos)
 
 productos_controller = ProductoController()
-productos_controller.cargar_productos()
+
+vista_producto(productos_controller)
 
 personas = PersonaController()
 
