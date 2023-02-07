@@ -4,8 +4,9 @@ from models.clientes import Clientes
 
 
 class Ventas(Crud):
-    def __init__(self, cliente: Clientes = None, detalle: str = None, producto: Producto = None, fecha: str = None):
+    def __init__(self, _id: str = None, cliente: Clientes = None, detalle: str = None, producto: Producto = None, fecha: str = None, total: float = None):
         super().__init__()
+        self._id: str = _id
         if cliente is None:
             self.cliente = Clientes()
         else:
@@ -16,7 +17,10 @@ class Ventas(Crud):
             self.total = 0.0
         else:
             self.producto: list = producto.todos()
-            self.total: float = self.get_total()
+            if total is None:
+                self.total: float = self.get_total()
+            else:
+                self.total: float = total
         self.fecha: str = fecha
 
 

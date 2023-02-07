@@ -1,15 +1,9 @@
-from pprint import pprint
-
-import tabulate
-
 from controller.producto_controller import ProductoController
+import tabulate
 
 
 def vista_producto(productos_controller: ProductoController):
-    try:
-        productos_controller.cargar_productos()
-    except:
-        print("No hay productos")
+
 
     while True:
         print("1.- Agregar producto")

@@ -1,1 +1,1 @@
-[{"lista": [], "cliente": {"lista": [], "id": "sadnkjasn", "nombre": "julio", "rfc": "TOX2309", "telefono": "8139895086"}, "detalle": "Venta en computadora", "producto": [{"lista": [], "id": "2053", "nombre": "Pipipi", "descripcion": "un objeto producto pipipi", "precio": 2042}, {"lista": [], "id": "2053", "nombre": "bromo", "descripcion": "lorem", "precio": 2042}, {"lista": [], "id": "2053", "nombre": "trac", "descripcion": "iptsum", "precio": 2042.3}], "total": 6126.3, "fecha": "09/01/2023"}]
+{"lista": [

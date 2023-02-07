@@ -40,6 +40,7 @@ class ProductoController:
                 producto.nombre = nombre
                 producto.descripcion = descripcion
                 producto.precio = precio
+                ParseJson(self.file).dump(self.productos)
                 return
         print("No se encontro el producto")
 

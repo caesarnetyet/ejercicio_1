@@ -15,14 +15,13 @@ class ParseJson:
             directory = modelo.doc_name()
 
         with open(directory, 'w') as file:
-            if modelo is dict:
-                json.dump(modelo, file)
-                return
-            elif modelo.size() > 0:
-                json.dump(modelo.todos(), file)
-                return
-            else:
+            if isinstance(modelo, Crud):
+                if modelo.size() > 0:
+                    json.dump(modelo.todos(), file)
+                    return
                 json.dump(vars(modelo), file)
+                return
+            json.dump(modelo, file)
 
     def read(self):
 
@@ -31,5 +30,9 @@ class ParseJson:
                 dictionary_file = json.load(file)
                 return dictionary_file
 
-            except FileNotFoundError:
+            except:
                 return []
+
+    def delete(self):
+        with open(self.file, 'w') as file:
+            json.dump([], file)
